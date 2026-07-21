@@ -1,3 +1,4 @@
+console.log("Script actualizado");
 //var map = L.map('map').setView([-16.495612, -68.133554], 13);
 var map = L.map('map',{
     center: [-34.1688115,-70.7300904],

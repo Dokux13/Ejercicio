@@ -134,3 +134,4 @@ legend.addTo(map);
         console.error("Error al cargar el GeoJSON:", error);
     });
 
+

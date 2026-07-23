@@ -38,7 +38,7 @@ L.control.scale({
     position:'bottomleft'
 }).addTo(map)
 L.control.layers(baseLayers).addTo(map);
-
+var cluster = L.markerClusterGroup();
 fetch('data/puntos.geojson')
     .then(response => response.json())
     .then(data => {
@@ -89,19 +89,7 @@ fetch('data/puntos.geojson')
 
 
 })
-.catch(error => {
-    console.error(
-        "Error al cargar el GeoJSON:",
-        error
-    );
-});
-        });
-
-        // Agregar la capa al mapa
-        puntosLayer.addTo(map)
-        map.fitBounds(puntosLayer.getBounds());
-
-    
+          
     var legend = L.control({
     position: 'bottomright'
 });

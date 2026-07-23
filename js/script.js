@@ -52,14 +52,25 @@ fetch('data/puntos.geojson')
 
                 // Convertir biomasa en tamaño del círculo
                 let radio = Math.sqrt(biomasa) / 10;
-
-                return L.marker(latlng, {
-                    radius: radio,
-                    color: '#e1e0ec',
-                    fillColor: '#F05100',
-                    fillOpacity: 1
-                });
-            },
+				return L.marker(latlng, {
+                icon: L.divIcon({
+                    className: '',
+                    html: `
+                        <div style="
+                            width:${radio * 2}px;
+                            height:${radio * 2}px;
+                            background:#F05100;
+                            border:2px solid #e1e0ec;
+                            border-radius:50%;">
+                        </div>
+                    `,
+                    iconSize: [
+                        radio * 2,
+                        radio * 2
+                    ]
+                })
+            });
+        },
 
             onEachFeature: function(feature, layer) {
 
@@ -80,6 +91,7 @@ fetch('data/puntos.geojson')
 
                 layer.bindPopup(contenido);
             }
+		});
  cluster.addLayer(puntosLayer);
 
     map.addLayer(cluster);

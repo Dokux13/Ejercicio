@@ -37,6 +37,7 @@ L.control.scale({
     imperial:true,
     position:'bottomleft'
 }).addTo(map)
+L.control.layers(baseLayers).addTo(map);
 
 fetch('data/puntos.geojson')
     .then(response => response.json())
@@ -52,7 +53,7 @@ fetch('data/puntos.geojson')
                 // Convertir biomasa en tamaño del círculo
                 let radio = Math.sqrt(biomasa) / 10;
 
-                return L.circleMarker(latlng, {
+                return L.marker(latlng, {
                     radius: radio,
                     color: '#e1e0ec',
                     fillColor: '#F05100',
@@ -79,7 +80,21 @@ fetch('data/puntos.geojson')
 
                 layer.bindPopup(contenido);
             }
+ cluster.addLayer(puntosLayer);
 
+    map.addLayer(cluster);
+
+
+    map.fitBounds(cluster.getBounds());
+
+
+})
+.catch(error => {
+    console.error(
+        "Error al cargar el GeoJSON:",
+        error
+    );
+});
         });
 
         // Agregar la capa al mapa

@@ -2,7 +2,7 @@ console.log("Script actualizado");
 
 // Crear mapa
 var map = L.map('map', {
-    center: [-34.1688115, -70.7300904],
+    center: [-45.0322054,-71.2863496],
     zoom: 13,
     zoomControl: false
 });
@@ -126,19 +126,6 @@ fetch('data/puntos.geojson')
         }
 
     });
-
-
-    // Añadir puntos al cluster
-    cluster.addLayer(puntosLayer);
-
-
-    // Añadir cluster al mapa
-    map.addLayer(cluster);
-
-
-    // Ajustar vista
-    map.fitBounds(cluster.getBounds());
-
 
 
     // Leyenda

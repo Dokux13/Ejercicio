@@ -107,7 +107,56 @@ fetch('data/puntos.geojson')
         }
 
     });
+var legend = L.control({
+    position: 'bottomright'
+});
 
+
+legend.onAdd = function(map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+
+    div.innerHTML += '<h4>Biomasa</h4>';
+
+    var valores = [
+        {valor: 100, texto: '100 ton'},
+        {valor: 500, texto: '500 ton'},
+        {valor: 1000, texto: '1000 ton'}
+    ];
+
+
+    valores.forEach(function(item) {
+
+        var radio = Math.sqrt(item.valor) / 15;
+
+
+        div.innerHTML +=
+        '<div class="legend-item">' +
+
+            '<span style="' +
+            'display:inline-block;' +
+            'width:' + radio * 2 + 'px;' +
+            'height:' + radio * 2 + 'px;' +
+            'background:#F05100;' +
+            'border:2px solid #e1e0ec;' +
+            'border-radius:50%;' +
+            'margin-right:10px;' +
+            'vertical-align:middle;">' +
+
+            '</span>' +
+
+            item.texto +
+
+        '</div>';
+
+    });
+
+
+    return div;
+};
+
+
+legend.addTo(map);
 
     // Agregar puntos al mapa
     puntosLayer.addTo(map);
